@@ -1,0 +1,21 @@
+*{
+	font-size: 16px;
+	font-family: 'Trebuchet MS';
+	color: #AB1BE0;
+	background-color: #2E2E2E;
+}
+
+body{
+	margin: auto 0;
+	width: 600px;
+	height: 400px;
+}
+
+h3{
+	color:#1B9EE0;
+	font-weight: bold;
+}
+
+#estado{
+	color:red;
+}

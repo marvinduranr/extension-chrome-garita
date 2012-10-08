@@ -1,0 +1,14 @@
+ {  "name": "DEMO RSS",
+ 	"version": "0.1",   
+ 	"manifest_version":2,
+ 	"description": "DEMO de extension con RSS",        
+	"permissions": [           
+		"http://apps.cbp.gov/*",
+		"tabs"  
+		],  
+	"browser_action": {     
+		"default_icon": "images/icon.png",     
+		"default_title": "RSS Demo",     
+		"default_popup": "popup.html"   
+		} 
+} 
