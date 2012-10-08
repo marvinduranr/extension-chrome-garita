@@ -1,14 +1,14 @@
- {  "name": "DEMO RSS",
+ {  "name": "Reporte de Garitas Tijuana",
  	"version": "0.1",   
  	"manifest_version":2,
- 	"description": "DEMO de extension con RSS",        
+ 	"description": "Reporte de Garitas Tijuana - San Diego",        
 	"permissions": [           
 		"http://apps.cbp.gov/*",
 		"tabs"  
 		],  
 	"browser_action": {     
 		"default_icon": "images/icon.png",     
-		"default_title": "RSS Demo",     
+		"default_title": "Reporte de Garitas Tijuana - San Diego",     
 		"default_popup": "popup.html"   
 		} 
 } 

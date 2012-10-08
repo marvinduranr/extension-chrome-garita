@@ -3,12 +3,13 @@
 	font-family: 'Trebuchet MS';
 	color: #AB1BE0;
 	background-color: #2E2E2E;
+	text-align: center;
 }
 
 body{
 	margin: auto 0;
-	width: 600px;
-	height: 400px;
+	width: 300px;
+	height: 300px;
 }
 
 h3{
