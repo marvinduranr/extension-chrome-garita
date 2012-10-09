@@ -7,25 +7,32 @@
 	padding: .1875em 0;
 }
 
+a:link{
+	color: red;
+	text-decoration: none;	
+}
+
 body{
 	margin: auto 0;
 	height: 300px;
 	width: 300px;
 }
 
-h3{
+header{
 	color:#2E2E2E;
+	font-size: 1.6em;
 	font-weight: bold;
 }
+
+
 
 #estado{
 	color:red;
 }
 
 .titulo{
-	background-color: #2E2E2E;
+	background-color: #303030;
 	color:#FFFFFF;
 	font-size: 1.3em;
-	padding: .125em 0;
-	text-align: center;
+
 }
