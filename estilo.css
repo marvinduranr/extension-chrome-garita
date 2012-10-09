@@ -1,22 +1,31 @@
 *{
-	font-size: 16px;
+	background-color: #FFFFFF;
+	color: #000000;
 	font-family: 'Trebuchet MS';
-	color: #AB1BE0;
-	background-color: #2E2E2E;
+	font-size: 16px;
 	text-align: center;
+	padding: .1875em 0;
 }
 
 body{
 	margin: auto 0;
-	width: 300px;
 	height: 300px;
+	width: 300px;
 }
 
 h3{
-	color:#1B9EE0;
+	color:#2E2E2E;
 	font-weight: bold;
 }
 
 #estado{
 	color:red;
+}
+
+.titulo{
+	background-color: #2E2E2E;
+	color:#FFFFFF;
+	font-size: 1.3em;
+	padding: .125em 0;
+	text-align: center;
 }
