@@ -1,6 +1,7 @@
 $(document).ready(function() {
 //RSS SanYsidro-Otay http://apps.cbp.gov/bwt/customize_rss.asp?portList=250601,250401&lane=all&action=rss&f=html
 //RSS Clima Tijuana http://rss.weather.com/weather/rss/local/MXBC0005?cm_ven=LWO&cm_cat=rss&par=LWO_rss
+//RSS Clima Tijuana Esp http://espanol.weather.com/rss-Tijuana-MXBC0005
   $.ajax({
     type: 'POST',
     url: 'http://apps.cbp.gov/bwt/customize_rss.asp?portList=250601,250401&lane=all&action=rss&f=html',
@@ -20,7 +21,30 @@ $(document).ready(function() {
     },
     error:function(){
       //Failed request
-      $('#div_ajax').html('<p class="alert alert-error">Error!</p>');
+      $('#div_ajax').html('<p class="alert alert-error">Error al cargar las garitas!</p>');
+    }
+  });
+
+    $.ajax({
+    type: 'POST',
+    url: 'http://rss.weather.com/weather/rss/local/MXBC0005?cm_ven=LWO&cm_cat=rss&par=LWO_rss',
+    cache: false,  
+
+    beforeSend:function(){
+      //Loading image
+      $('#estado').html('<div class="loading"><img src="images/loading.gif" alt="Cargando..." /></div>');
+    },
+    success:function(data){
+      //Successful request
+      $('#div_clima').empty();
+      $('#estado').empty();
+      
+      $('#div_clima').append(clima(data));
+    
+    },
+    error:function(){
+      //Failed request
+      $('#div_clima').html('<p class="alert alert-error">Error al cargar clima!</p>');
     }
   });
 
@@ -59,6 +83,11 @@ $(document).ready(function() {
 
   }
 
+  function clima(data){
+      var info= $(data).find('item').text();
+      var forecast = info.slice(info.indexOf('_rss')+4, info.indexOf('For'));
+      return forecast
+  }
 
 });
 

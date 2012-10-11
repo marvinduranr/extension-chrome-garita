@@ -24,10 +24,18 @@ header{
 	font-weight: bold;
 }
 
+footer{
+	font-size: 1em;
+}
 
 
 #estado{
 	color:red;
+}
+
+#div_clima{
+	color:#7A7A7A;
+	font-size: 1em;
 }
 
 .titulo{
