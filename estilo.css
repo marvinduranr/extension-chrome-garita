@@ -27,6 +27,9 @@ header{
 footer{
 	font-size: 1em;
 }
+footer a{
+	font-size: 1em;
+}
 
 
 #estado{
@@ -37,7 +40,10 @@ footer{
 	color:#7A7A7A;
 	font-size: 1em;
 }
-
+#div_clima img{
+	width: 26px;
+	height: 26px;
+}
 .titulo{
 	background-color: #303030;
 	color:#FFFFFF;

@@ -4,7 +4,7 @@
  	"description": "Reporte de Garitas Tijuana - San Diego",        
 	"permissions": [           
 		"http://apps.cbp.gov/*",
-		"http://*.weather.com/*",
+		"http://weather.yahooapis.com/*",
 		"tabs"  
 		],  
 	"browser_action": {     

@@ -1,7 +1,7 @@
 $(document).ready(function() {
 //RSS SanYsidro-Otay http://apps.cbp.gov/bwt/customize_rss.asp?portList=250601,250401&lane=all&action=rss&f=html
 //RSS Clima Tijuana http://rss.weather.com/weather/rss/local/MXBC0005?cm_ven=LWO&cm_cat=rss&par=LWO_rss
-//RSS Clima Tijuana Esp http://espanol.weather.com/rss-Tijuana-MXBC0005
+//RSS Clima Tijuana http://weather.yahooapis.com/forecastrss?w=149361&u=c
   $.ajax({
     type: 'POST',
     url: 'http://apps.cbp.gov/bwt/customize_rss.asp?portList=250601,250401&lane=all&action=rss&f=html',
@@ -27,7 +27,7 @@ $(document).ready(function() {
 
     $.ajax({
     type: 'POST',
-    url: 'http://rss.weather.com/weather/rss/local/MXBC0005?cm_ven=LWO&cm_cat=rss&par=LWO_rss',
+    url: 'http://weather.yahooapis.com/forecastrss?w=149361&u=c',
     cache: false,  
 
     beforeSend:function(){
@@ -84,10 +84,11 @@ $(document).ready(function() {
   }
 
   function clima(data){
-      var info= $(data).find('item').text();
-      var forecast = info.slice(info.indexOf('_rss')+4, info.indexOf('For'));
+      var info= $(data).find('description:eq(1)').text();
+      var forecast = info.slice(info.indexOf('A[')+1, info.indexOf('<BR />'));
+      forecast = forecast.slice(0,forecast.indexOf('<br />'))+forecast.slice(forecast.indexOf('/b><br />')+9)
       return forecast
+  
   }
 
 });
-
