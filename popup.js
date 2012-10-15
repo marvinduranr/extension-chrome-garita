@@ -38,8 +38,10 @@ $(document).ready(function() {
       //Successful request
       $('#div_clima').empty();
       $('#estado').empty();
-      
-      $('#div_clima').append(clima(data));
+      var info= $(data).find('description:eq(1)').text();
+      var forecast = info.slice(info.indexOf('A[')+1, info.indexOf('<BR />'));
+      forecast = forecast.slice(0,forecast.indexOf('<br />'))+forecast.slice(forecast.indexOf('/b><br />')+9)
+      $('#div_clima').append(forecast);
     
     },
     error:function(){
@@ -73,7 +75,7 @@ $(document).ready(function() {
 	//tomo posicion del tiempo y lo agrego.
         pos_inicio=info_modificado.indexOf('PDT');
         pos_fin = info_modificado.indexOf('lane(s)');
-        garita_info = garita_info + "<td>" +info_modificado.slice(pos_inicio+3, pos_fin-3)+"</td></tr>";
+        garita_info = garita_info + "<td>" + color(info_modificado.slice(pos_inicio+3, pos_fin-3))+"</td></tr>";
         info_modificado=info_modificado.slice(pos_fin+4);
         garita_info=garita_info.replace(",",'');
       }
@@ -83,12 +85,24 @@ $(document).ready(function() {
 
   }
 
-  function clima(data){
-      var info= $(data).find('description:eq(1)').text();
-      var forecast = info.slice(info.indexOf('A[')+1, info.indexOf('<BR />'));
-      forecast = forecast.slice(0,forecast.indexOf('<br />'))+forecast.slice(forecast.indexOf('/b><br />')+9)
-      return forecast
-  
+  function color(info){
+      var pos;
+      var cantidad;
+      if (info.search('no delay')!= -1 ){
+        return "<span class='verde'>"+info+"</span>"
+      }
+      if(info.search('hrs') != -1){
+        return "<span class='rojo'>"+info+"</span"
+      }
+      if(info.search('min') != -1){
+        pos = info.search('min');
+        cantidad = info.slice(0,pos-1);
+        if(parseInt(cantidad)<30){
+          return "<span class='verde'>"+info+"</span>"
+        }
+        return "<span class='amarillo'>"+info+"</span>"
+      }
+      
   }
 
 });
