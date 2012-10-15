@@ -1,6 +1,5 @@
 $(document).ready(function() {
 //RSS SanYsidro-Otay http://apps.cbp.gov/bwt/customize_rss.asp?portList=250601,250401&lane=all&action=rss&f=html
-//RSS Clima Tijuana http://rss.weather.com/weather/rss/local/MXBC0005?cm_ven=LWO&cm_cat=rss&par=LWO_rss
 //RSS Clima Tijuana http://weather.yahooapis.com/forecastrss?w=149361&u=c
   $.ajax({
     type: 'POST',
@@ -89,11 +88,35 @@ $(document).ready(function() {
       var pos;
       var cantidad;
       if (info.search('no delay')!= -1 ){
-        return "<span class='verde'>"+info+"</span>"
+        return "<span class='verde'>Sin demora</span>"
       }
+
+      //verifico cantidad de horas y minutos
       if(info.search('hrs') != -1){
-        return "<span class='rojo'>"+info+"</span"
+       pos=info.search('hrs');
+        cantidad=info.slice(0, pos-1);
+        if(parseInt(cantidad)>1){
+          return "<span class='rojo'>"+info+"</span>"
+        }
+        else{
+          if(info.search('min') != -1){
+            pos=info.search('hrs');
+            var pos_extra= info.search('min');
+            cantidad=info.slice(pos+3,pos_extra); 
+            if(parseInt(cantidad)<30){
+              return "<span class='amarillo'>"+info+"</span>"
+              }
+            else{
+              return "<span class='rojo'>"+info+"</span>"
+              }
+          }
+          else{
+            return "<span class='amarillo'>"+info+"</span>"
+          }
+        }
       }
+
+      //verifico cantidad de minutos
       if(info.search('min') != -1){
         pos = info.search('min');
         cantidad = info.slice(0,pos-1);
