@@ -87,6 +87,7 @@ $(document).ready(function() {
   function color(info){
       var pos;
       var cantidad;
+      info = info.replace(",",'');
       if (info.search('no delay')!= -1 ){
         return "<span class='verde'>Sin demora</span>"
       }
