@@ -1,6 +1,7 @@
 $(document).ready(function() {
 //RSS SanYsidro-Otay http://apps.cbp.gov/bwt/customize_rss.asp?portList=250601,250401&lane=all&action=rss&f=html
 //RSS Clima Tijuana http://weather.yahooapis.com/forecastrss?w=149361&u=c
+
   $.ajax({
     type: 'POST',
     url: 'http://apps.cbp.gov/bwt/customize_rss.asp?portList=250601,250401&lane=all&action=rss&f=html',
@@ -15,7 +16,7 @@ $(document).ready(function() {
       $('#div_ajax').empty();
       $('#estado').empty();
       $(data).find('item').each(function(i){
-      $('#div_ajax').append(tiempo($(this).find('title').text() , $(this).text()));
+        $('#div_ajax').append(tiempo($(this).find('title').text() , $(this).text()));
       });
     },
     error:function(){
@@ -49,35 +50,57 @@ $(document).ready(function() {
     }
   });
 
-  function tiempo(garita, info){
+function tiempo(garita, info){
       //tomo nombre de la garita
 
       var garita_info="<table class='table table-striped'><thead><tr><th colspan=2 class='titulo'>"+garita.slice(0,garita.indexOf('-'))+"</th></tr></thead><tbody>";
 
       //posicion y corto la informacion para comenzar a tomar el tiempo
       var passenger_vehicles= info.indexOf('Passenger Vehicles');
-      var info_modificado=info.slice(passenger_vehicles);
+      var description = info.indexOf('</description>');
+      var info_modificado=info.slice(passenger_vehicles,description);
       var pos_inicio;
       var pos_fin;
+      var garita_sola;
 
       for(i=0;i<4;i++){
         switch(i){
           case 0: garita_info = garita_info + "<tr><td>Standard</td> ";
+                pos_inicio = info_modificado.indexOf('Standard Lanes:');
+          pos_fin=info_modificado.indexOf('Readylane:');
                   break;
           case 1: garita_info = garita_info + "<tr><td>Readylane</td>";
+                pos_inicio = info_modificado.indexOf('Readylane:');
+          pos_fin=info_modificado.indexOf('Sentri Lanes:');
                   break;
           case 2: garita_info = garita_info + "<tr><td>Sentri</td>";
+                pos_inicio = info_modificado.indexOf('Sentri Lanes:');
+          pos_fin=info_modificado.indexOf('Pedestrian');
                   break;
           case 3: garita_info = garita_info + "<tr><td>Peatonal</td>";
+                pos_inicio = info_modificado.indexOf('Standard Lanes:');
+          pos_fin=info_modificado.indexOf('<br/>');
                   break;
         }
-	//tomo posicion del tiempo y lo agrego.
-        pos_inicio=info_modificado.indexOf('PDT');
-        pos_fin = info_modificado.indexOf('lane(s)');
-        garita_info = garita_info + "<td>" + color(info_modificado.slice(pos_inicio+3, pos_fin-3))+"</td></tr>";
-        info_modificado=info_modificado.slice(pos_fin+4);
-        garita_info=garita_info.replace(",",'');
-      }
+    
+        //tomo la garita que corresponde
+        garita_sola= info_modificado.slice(pos_inicio,pos_fin);
+
+        //me fijo si la garita standard esta cerrada
+        if(garita_sola.search('Lanes Closed') > -1){
+              garita_info = garita_info + "<td>" + color('Lineas Cerradas')+"</td></tr>";
+              info_modificado=info_modificado.slice(pos_fin-2);
+        }
+        //si no esta cerrada, tomo tiempo de la garita
+        else{
+          pos_inicio=info_modificado.indexOf('PDT');
+              pos_fin = info_modificado.indexOf('lane(s)');
+              garita_info = garita_info + "<td>" + color(info_modificado.slice(pos_inicio+3, pos_fin-3))+"</td></tr>";
+              info_modificado=info_modificado.slice(pos_fin+4);
+              garita_info=garita_info.replace(",",'');
+        }
+
+      }//ciclo for
       
       garita_info = garita_info +"</tbdoy></table>"
       return garita_info
@@ -88,19 +111,23 @@ $(document).ready(function() {
       var pos;
       var cantidad;
       info = info.replace(",",'');
-      if (info.search('no delay')!= -1 ){
+      if (info.search('no delay') > -1 ){
         return "<span class='verde'>Sin demora</span>"
       }
 
+      if (info.search('Lineas Cerradas') > -1 ){
+        return "<span class='rojo'>Lineas Cerradas</span>"
+      }
+
       //verifico cantidad de horas y minutos
-      if(info.search('hrs') != -1){
+      if(info.search('hrs') > -1){
        pos=info.search('hrs');
         cantidad=info.slice(0, pos-1);
         if(parseInt(cantidad)>1){
           return "<span class='rojo'>"+info+"</span>"
         }
         else{
-          if(info.search('min') != -1){
+          if(info.search('min') > -1){
             pos=info.search('hrs');
             var pos_extra= info.search('min');
             cantidad=info.slice(pos+3,pos_extra); 
@@ -118,7 +145,7 @@ $(document).ready(function() {
       }
 
       //verifico cantidad de minutos
-      if(info.search('min') != -1){
+      if(info.search('min') > -1){
         pos = info.search('min');
         cantidad = info.slice(0,pos-1);
         if(parseInt(cantidad)<30){
