@@ -31,23 +31,7 @@ footer a{
 	font-size: 0.75em;
 }
 
-footer img{
-	float: right;
-	height: 1.15em;
-	width: 1.15em;
-}
 
-footer a:hover img{
-	opacity: .40;
-	-webkit-transform: scale(1.5);
-	-webkit-transition: opacity .2s ease-in-out;
-	transition: opacity .2s ease-in-out;
-
-}
-
-#help{
-	background-color: #2f2f2f;
-}
 
 #estado{
 	color:red;
@@ -79,4 +63,8 @@ footer a:hover img{
 
 .verde{
 	color:#46a546;
+}
+
+.negro{
+	color:#B8B8B8;
 }

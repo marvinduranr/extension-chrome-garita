@@ -2,7 +2,7 @@ $(document).ready(function() {
 //RSS SanYsidro-Otay http://apps.cbp.gov/bwt/customize_rss.asp?portList=250601,250401&lane=all&action=rss&f=html
 //RSS Clima Tijuana http://weather.yahooapis.com/forecastrss?w=149361&u=c
 
-  $("a#ayuda").colorbox({inline:true, width:"50%"});
+
 
   $.ajax({
     type: 'POST',
@@ -93,6 +93,10 @@ function tiempo(garita, info){
               garita_info = garita_info + "<td>" + color('Lineas Cerradas')+"</td></tr>";
               info_modificado=info_modificado.slice(pos_fin-2);
         }
+        else if(garita_sola.search('Update Pending') > -1){
+              garita_info = garita_info + "<td>" + color('Pendiente de Actualizar')+"</td></tr>";
+              info_modificado=info_modificado.slice(pos_fin-2);
+        }
         //si no esta cerrada, tomo tiempo de la garita
         else{
           pos_inicio=info_modificado.indexOf('PDT');
@@ -119,6 +123,10 @@ function tiempo(garita, info){
 
       if (info.search('Lineas Cerradas') > -1 ){
         return "<span class='rojo'>Lineas Cerradas</span>"
+      }
+
+      if (info.search('Pendiente de Actualizar') > -1 ){
+        return "<span class='negro'>Pendiente de Actualizar</span>"
       }
 
       //verifico cantidad de horas y minutos
