@@ -7,9 +7,14 @@
 		</title>
 		<meta charset="utf-8"/>
 		<script src="jquery-1.8.2.min.js" ></script>
+		<script src="jquery.colorbox-min.js"></script>
+		<script src="jquery.colorbox.js"></script>
 		<script src="popup.js"></script>
+
+
 		<link rel="stylesheet" href="estilo.css" type="text/css"/>
 		<link rel="stylesheet" href="bootstrap.min.css" type="text/css"/>
+		<link rel="stylesheet" href="colorbox.css" type="text/css"/>
 	</head>
 	<body>
 		<header>
@@ -24,8 +29,14 @@
 		<div id="div_clima">
 
 		</div>
+		<div style="display:none">
+			<div id="help">
+				ESTO ES LA AYUDA
+			</div>
+		</div>
 		<footer>
-			Información proporcionada por <a href="http://apps.cbp.gov/bwt/">CBP</a> y <a href="http://weather.yahoo.com/">Yahoo Weather</a>
+			Información proporcionada por <a href="http://apps.cbp.gov/bwt/">CBP</a> y <a href="http://weather.yahoo.com/">Yahoo Weather</a><br/>
+			<a href="#help" id="ayuda" title="Ayuda"><img src="images/question.png"/></a>
 		</footer>
 	</body>
 

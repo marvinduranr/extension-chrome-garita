@@ -2,6 +2,8 @@ $(document).ready(function() {
 //RSS SanYsidro-Otay http://apps.cbp.gov/bwt/customize_rss.asp?portList=250601,250401&lane=all&action=rss&f=html
 //RSS Clima Tijuana http://weather.yahooapis.com/forecastrss?w=149361&u=c
 
+  $("a#ayuda").colorbox({inline:true, width:"50%"});
+
   $.ajax({
     type: 'POST',
     url: 'http://apps.cbp.gov/bwt/customize_rss.asp?portList=250601,250401&lane=all&action=rss&f=html',

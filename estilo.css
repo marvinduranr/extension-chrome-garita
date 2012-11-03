@@ -31,6 +31,23 @@ footer a{
 	font-size: 0.75em;
 }
 
+footer img{
+	float: right;
+	height: 1.15em;
+	width: 1.15em;
+}
+
+footer a:hover img{
+	opacity: .40;
+	-webkit-transform: scale(1.5);
+	-webkit-transition: opacity .2s ease-in-out;
+	transition: opacity .2s ease-in-out;
+
+}
+
+#help{
+	background-color: #2f2f2f;
+}
 
 #estado{
 	color:red;
@@ -41,8 +58,9 @@ footer a{
 	font-size: 1em;
 }
 #div_clima img{
-	width: 26px;
+	
 	height: 26px;
+	width: 26px;
 }
 .titulo{
 	background-color: #303030;
