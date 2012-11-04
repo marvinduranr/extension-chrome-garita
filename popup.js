@@ -64,6 +64,7 @@ function tiempo(garita, info){
       var pos_inicio;
       var pos_fin;
       var garita_sola;
+      var horario;
 
       for(i=0;i<4;i++){
         switch(i){
@@ -99,11 +100,19 @@ function tiempo(garita, info){
         }
         //si no esta cerrada, tomo tiempo de la garita
         else{
-          pos_inicio=info_modificado.indexOf('PDT');
-              pos_fin = info_modificado.indexOf('lane(s)');
-              garita_info = garita_info + "<td>" + color(info_modificado.slice(pos_inicio+3, pos_fin-3))+"</td></tr>";
-              info_modificado=info_modificado.slice(pos_fin+4);
-              garita_info=garita_info.replace(",",'');
+          // depende del horario cambia el indexOf a buscar, si es horario de verano es PDT, si es horario normal es PST
+          horario=info_modificado.indexOf('PDT');
+          if(horario > -1){
+            pos_inicio=horario;
+          }
+          else{
+            pos_inicio = info_modificado.indexOf('PST');
+          }
+          
+          pos_fin = info_modificado.indexOf('lane(s)');
+          garita_info = garita_info + "<td>" + color(info_modificado.slice(pos_inicio+3, pos_fin-3))+"</td></tr>";
+          info_modificado=info_modificado.slice(pos_fin+4);
+          garita_info=garita_info.replace(",",'');
         }
 
       }//ciclo for

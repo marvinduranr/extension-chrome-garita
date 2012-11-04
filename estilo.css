@@ -8,7 +8,7 @@
 }
 
 a:link{
-	color: red;
+
 	text-decoration: none;	
 }
 
@@ -31,7 +31,30 @@ footer a{
 	font-size: 0.75em;
 }
 
+footer img{
+	height: 1.125em;
+	width: 1.125em;
+}
 
+#slideout{
+	position: fixed;
+  	bottom: 0;
+  	-webkit-transition-duration: 0.3s;
+  	transition-duration: 0.3s;
+}
+
+#slideout_inner {
+  position: fixed;
+  bottom: -310px;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+#slideout:hover {
+  bottom: 300px;
+}
+#slideout:hover #slideout_inner {
+  bottom: 0;
+}
 
 #estado{
 	color:red;
@@ -50,7 +73,6 @@ footer a{
 	background-color: #303030;
 	color:#FFFFFF;
 	font-size: 1.3em;
-
 }
 
 .rojo{
@@ -67,4 +89,13 @@ footer a{
 
 .negro{
 	color:#B8B8B8;
+}
+
+.ayuda{
+	background-color: #303030;
+	-webkit-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+	color:#FFFFFF;
+	font-size: .75em;
+	text-align: center;
 }
