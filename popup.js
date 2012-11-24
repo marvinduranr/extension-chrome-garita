@@ -17,9 +17,11 @@ $(document).ready(function() {
       //Successful request
       $('#div_ajax').empty();
       $('#estado').empty();
+      var fechaPub= tiempopublicado($(data).find('pubDate:eq(1)').text());
       $(data).find('item').each(function(i){
         $('#div_ajax').append(tiempo($(this).find('title').text() , $(this).text()));
       });
+      $('#div_ajax').append("<span class='tiempo'>Información actualizada a las "+fechaPub+"</span>");
     },
     error:function(){
       //Failed request
@@ -175,4 +177,32 @@ function tiempo(garita, info){
       
   }
 
+  function tiempopublicado(t){
+    //Mon, 19 Nov 2012 17:11:25 EST
+    //Mon, 19 Nov 2012 19:21:13 EST
+    var posInicio = t.indexOf(':');
+    var posFinal=t.indexOf(':',posInicio+1);
+    
+    t=t.slice(posInicio-2,posFinal);
+    var d = new Date();
+    var tiempoLocal = d.getHours().toString() +":"+d.getMinutes().toString();
+
+    return t;
+
+  }
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
