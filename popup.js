@@ -184,10 +184,25 @@ function tiempo(garita, info){
     var posFinal=t.indexOf(':',posInicio+1);
     
     t=t.slice(posInicio-2,posFinal);
-    var d = new Date();
-    var tiempoLocal = d.getHours().toString() +":"+d.getMinutes().toString();
+    
+    //16:32
+    var horas = parseInt(t.slice(0,t.indexOf(':')));
+    var minutos = t.slice(t.indexOf(':'));
 
-    return t;
+    if (horas < 3){
+      switch(horas){
+        case 0: horas=21;
+                break;
+        case 1: horas=22;
+                break;
+        case 2: horas=23;
+                break;
+      }
+    }
+    else{
+      horas = horas - 3;
+    }
+    return t+" HORA LOCAL: "+horas.toString()+minutos;
 
   }
 
