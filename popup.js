@@ -43,8 +43,7 @@ $(document).ready(function() {
       $('#div_clima').empty();
       $('#estado').empty();
       var info= $(data).find('description:eq(1)').text();
-      var forecast = info.slice(info.indexOf('A[')+1, info.indexOf('<BR />'));
-      forecast = forecast.slice(0,forecast.indexOf('<br />'))+forecast.slice(forecast.indexOf('/b><br />')+9)
+      var forecast = clima(info);
       $('#div_clima').append(forecast);
     
     },
@@ -187,7 +186,11 @@ function tiempo(garita, info){
     
     //16:32
     var horas = parseInt(t.slice(0,t.indexOf(':')));
-    var minutos = t.slice(t.indexOf(':'));
+    var minutos = t.slice(t.indexOf(':')+1);
+
+    if(parseInt(minutos)<10){
+      minutos="0"+minutos;
+    }
 
     if (horas < 3){
       switch(horas){
@@ -202,11 +205,20 @@ function tiempo(garita, info){
     else{
       horas = horas - 3;
     }
-    return t+" HORA LOCAL: "+horas.toString()+minutos;
-
+    return t+" HORA LOCAL: "+horas.toString()+":"+minutos;
+    //return minutos;
   }
 
 });
+
+function clima(info){
+  var clima= info.slice(info.indexOf('A[')+1, info.indexOf('<BR />'));
+  clima = clima.slice(0,clima.indexOf('<br />'))+clima.slice(clima.indexOf('/b><br />')+9);
+
+  var posC= clima.indexOf("C");
+  clima = clima.slice(0,posC-1)+"°C";
+  return clima;
+}
 
 
 
