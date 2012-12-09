@@ -213,13 +213,12 @@ function tiempo(garita, info){
 
 function clima(info){
   var clima= info.slice(info.indexOf('A[')+1, info.indexOf('<BR />'));
-  clima = clima.slice(0,clima.indexOf('<br />'))+clima.slice(clima.indexOf('/b><br />')+9);
+  clima = clima.slice(0,clima.indexOf('<br />'))+clima.slice(clima.indexOf('</b><br />')+10);
 
-  var posC= clima.indexOf("C");
+  var posC= clima.lastIndexOf("C");
   clima = clima.slice(0,posC-1)+"°C";
   return clima;
 }
-
 
 
 
