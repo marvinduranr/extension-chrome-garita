@@ -83,7 +83,7 @@ function tiempo(garita, info){
                   break;
           case 3: garita_info = garita_info + "<tr><td>Peatonal</td>";
                 pos_inicio = info_modificado.indexOf('Standard Lanes:');
-          pos_fin=info_modificado.indexOf('<br/>');
+          pos_fin=info_modificado.indexOf('open');
                   break;
         }
     
@@ -193,14 +193,7 @@ function tiempo(garita, info){
     }
 
     if (horas < 3){
-      switch(horas){
-        case 0: horas=21;
-                break;
-        case 1: horas=22;
-                break;
-        case 2: horas=23;
-                break;
-      }
+     horas = 21 + horas;
     }
     else{
       horas = horas - 3;
