@@ -198,7 +198,7 @@ function tiempo(garita, info){
     else{
       horas = horas - 3;
     }
-    return t+" HORA LOCAL: "+horas.toString()+":"+minutos;
+    return horas.toString()+":"+minutos;
     //return minutos;
   }
 
