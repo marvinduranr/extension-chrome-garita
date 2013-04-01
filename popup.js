@@ -1,12 +1,12 @@
 $(document).ready(function() {
 //RSS calexico http://apps.cbp.gov/bwt/customize_rss.asp?portList=250301,250302&lane=all&action=rss&f=html
-//RSS Clima Tijuana http://weather.yahooapis.com/forecastrss?w=149361&u=c
+//RSS Clima Mexicali http://weather.yahooapis.com/forecastrss?w=133475&u=c
 
 
-//Request para el RSS del cbp, solamente para Tj (Otay, San Ysidro)
+//Request para el RSS del cbp, solamente para Mexicali - Calexico
   $.ajax({
     type: 'POST',
-    url: 'http://apps.cbp.gov/bwt/customize_rss.asp?portList=250601,250401&lane=all&action=rss&f=html',
+    url: 'http://apps.cbp.gov/bwt/customize_rss.asp?portList=250301,250302&lane=all&action=rss&f=html',
     cache: false,  
 
     beforeSend:function(){
@@ -59,7 +59,7 @@ $(document).ready(function() {
 
 function tiempo(garita, info){
       //comienzo variable, haciendo la estructura de la tabla, tomo nombre de la garita y creo el tbody
-      var garita_info="<table class='table table-striped'><thead><tr><th colspan=2 class='titulo'>"+garita.slice(0,garita.indexOf('-'))+"</th></tr></thead><tbody>";
+      var garita_info="<table border=1 class='table table-striped'><tbody><thead><tr><th colspan=\'3\' class='titulo'>"+garita.slice(0,garita.indexOf('</t)'))+"</th></tr></thead>";
 
       //tomo posición y corto la informacion para tener solo el texto de las lineas
       var passenger_vehicles= info.indexOf('Passenger Vehicles');
@@ -127,7 +127,7 @@ function tiempo(garita, info){
 
       }//ciclo for
       
-      garita_info = garita_info +"</tbdoy></table>"
+      garita_info = garita_info +"</tbody></table>"
       return garita_info
 
   }
