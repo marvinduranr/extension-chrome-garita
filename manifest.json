@@ -1,7 +1,7 @@
- {  "name": "Reporte de Garitas Tijuana",
+ {  "name": "Reporte de Garitas Mexicali",
  	"version": "1.0.4",   
  	"manifest_version":2,
- 	"description": "Reporte de Garitas Tijuana - San Diego",        
+ 	"description": "Reporte de Garitas Mexicali - Calexico",        
 	"permissions": [           
 		"http://apps.cbp.gov/*",
 		"http://weather.yahooapis.com/*",
@@ -12,7 +12,7 @@
                "128": "images/icon128.png" }, 
 	"browser_action": {     
 		"default_icon": "images/icon.png",     
-		"default_title": "Reporte de Garitas Tijuana - San Diego",     
+		"default_title": "Reporte de Garitas Mexicali - Calexico",     
 		"default_popup": "popup.html"   
 		} 
 } 
