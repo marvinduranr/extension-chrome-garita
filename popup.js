@@ -1,5 +1,5 @@
 $(document).ready(function() {
-//RSS SanYsidro-Otay http://apps.cbp.gov/bwt/customize_rss.asp?portList=250601,250401&lane=all&action=rss&f=html
+//RSS calexico http://apps.cbp.gov/bwt/customize_rss.asp?portList=250301,250302&lane=all&action=rss&f=html
 //RSS Clima Tijuana http://weather.yahooapis.com/forecastrss?w=149361&u=c
 
 
@@ -21,7 +21,7 @@ $(document).ready(function() {
       //Tomo la fecha en que se actualizó la información de la garita mandando a la funcion tiempopublicado
       var fechaPub= tiempopublicado($(data).find('pubDate:eq(1)').text());
 
-      //por cada item (garita, Otay o SY) que venga en el XML llamo la función tiempo mandandole que garita la información
+      //por cada item (garita, Otay o SY) que venga en el XML llamo la función tiempo mandándole que garita la información
       $(data).find('item').each(function(i){
         $('#div_ajax').append(tiempo($(this).find('title').text() , $(this).text()));
       });
@@ -32,10 +32,10 @@ $(document).ready(function() {
       $('#div_ajax').html('<p class="alert alert-error">Error al cargar las garitas!</p>');
     }
   });
-
+  //se carga el clima de la ciudad (mexicali)
     $.ajax({
     type: 'POST',
-    url: 'http://weather.yahooapis.com/forecastrss?w=149361&u=c',
+    url: 'http://weather.yahooapis.com/forecastrss?w=133475&u=c',
     cache: false,  
 
     beforeSend:function(){
@@ -61,7 +61,7 @@ function tiempo(garita, info){
       //comienzo variable, haciendo la estructura de la tabla, tomo nombre de la garita y creo el tbody
       var garita_info="<table class='table table-striped'><thead><tr><th colspan=2 class='titulo'>"+garita.slice(0,garita.indexOf('-'))+"</th></tr></thead><tbody>";
 
-      //tomo posicion y corto la informacion para tener solo el texto de las lineas
+      //tomo posición y corto la informacion para tener solo el texto de las lineas
       var passenger_vehicles= info.indexOf('Passenger Vehicles');
       var description = info.indexOf('</description>');
       var info_modificado=info.slice(passenger_vehicles,description);
@@ -71,7 +71,7 @@ function tiempo(garita, info){
       var garita_sola;
       var horario;
 
-      //malillosamente hago un for con un switch (las 4 tipo de lineas) haciendo el órden que corresponde
+      //maliciosamente hago un For con un Switch (las 4 tipo de líneas) haciendo el órden que corresponde
       for(i=0;i<4;i++){
         switch(i){
           case 0: garita_info = garita_info + "<tr><td>Standard</td> ";
@@ -97,16 +97,16 @@ function tiempo(garita, info){
 
         //me fijo si la garita esta cerrada o pendiente de actualizar
         if(garita_sola.search('Lanes Closed') > -1){
-              //si si esta cerrada, mando la información a la funcion color para que me regrese el texto del color correspondiente
+              //si está cerrada, mando la información a la funcion color para que me regrese el texto del color correspondiente
               garita_info = garita_info + "<td>" + color('Lineas Cerradas')+"</td></tr>";
               info_modificado=info_modificado.slice(pos_fin-2);
         }
         else if(garita_sola.search('Update Pending') > -1){
-              //si si esta pendiente, mando la información a la función color para que me regrese el texto del color correspondiente
+              //si está pendiente, mando la información a la función color para que me regrese el texto del color correspondiente
               garita_info = garita_info + "<td>" + color('Pendiente de Actualizar')+"</td></tr>";
               info_modificado=info_modificado.slice(pos_fin-2);
         }
-        //si no esta cerrada ó pendiente de actualizar, tomo tiempo de la garita
+        //si no está cerrada o pendiente de actualizar, tomo tiempo de la garita
         else{
           // depende del horario cambia el indexOf a buscar, si es horario de verano es PDT, si es horario normal es PST
           horario=info_modificado.indexOf('PDT');
@@ -137,7 +137,7 @@ function tiempo(garita, info){
       var cantidad;
       info = info.replace(",",'');
 
-      //comparo si esta sin demora, cerradas o pendiente de actualizar
+      //comparo si está sin demora, cerradas o pendiente de actualizar
       if (info.search('no delay') > -1 ){
         return "<span class='verde'>Sin demora</span>"
       }
@@ -228,7 +228,7 @@ function tiempo(garita, info){
 });
 
 function clima(info){
-  //Funcion que toma del XML sólamente la temperatura y el tipo de clima (junto con icono)
+  //Funcion que toma del XML solamente la temperatura y el tipo de clima (junto con icono)
   var clima= info.slice(info.indexOf('A[')+1, info.indexOf('<BR />'));
   clima = clima.slice(0,clima.indexOf('<br />'))+clima.slice(clima.indexOf('</b><br />')+10);
 
@@ -236,16 +236,3 @@ function clima(info){
   clima = clima.slice(0,posC-1)+"°C";
   return clima;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
