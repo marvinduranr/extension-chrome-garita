@@ -59,7 +59,8 @@ $(document).ready(function() {
 
 function tiempo(garita, info){
       //comienzo variable, haciendo la estructura de la tabla, tomo nombre de la garita y creo el tbody
-      var garita_info="<table border=1 class='table table-striped'><tbody><thead><tr><th colspan=\'3\' class='titulo'>"+garita.slice(0,garita.indexOf('</t)'))+"</th></tr></thead>";
+    //por algún motivo extraño la T al final de east y west no aparecía, así que agregué una T al html justo antes del cierre del tag th. terrible pero funciona. 
+      var garita_info="<table border=1 class='table table-striped'><tbody><thead><tr><th colspan=\'3\' class='titulo'>"+garita.slice(0,garita.indexOf('</t)'))+"t</th></tr></thead>";
 
       //tomo posición y corto la informacion para tener solo el texto de las lineas
       var passenger_vehicles= info.indexOf('Passenger Vehicles');
