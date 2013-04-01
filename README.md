@@ -1,4 +1,6 @@
-REPORTE DE GARITAS TIJUANA - SAN DIEGO
+Este es un fork REPORTE DE GARITAS TIJUANA - SAN DIEGO
+La intención inicial es duplicar la funcionalidad para la 
+GARITA MEXICALI - CALEXICO. 
 ========
 
 
