@@ -10,7 +10,9 @@ GARITA MEXICALI - CALEXICO.
 Descripción
 --------
 
-Extensión que te da el tiempo estimado para el cruce de garitas entre Tijuana - San Diego (San Ysidro y Otay) en las lineas Standard, Readylane, Sentri y Peatonal.
+Extensión que te da el tiempo estimado para el cruce de garitas entre Mexicali y Calexico en las lineas Standard, Readylane, Sentri y Peatonal.
+
+__Versión 1.1.0__ --> Fork del proyecto original, desarrollado para Mexicali. Se corrige código para estar al estándar y aparecen íconos nuevos.
 
 __Versión 1.0.4__ --> Se corrige error al cargar garita peatonal de Otay; se cambian estilo de colores en las fuentes; se agrega la hora en que se actualizó la garita (Zona horaria PST/PDT).
 
